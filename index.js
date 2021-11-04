@@ -21,7 +21,11 @@ app.use('/', (req, res) => {
 
 //=======........========//
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(__dirname + '/functions/public/'))
 
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/functions/public/index.html'))
+}
 
 
 //=======........========//
